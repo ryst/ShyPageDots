@@ -39,7 +39,12 @@
 %new
 -(void)_hidePageControl {
 	SBIconListPageControl* _pageControl = MSHookIvar<SBIconListPageControl*>(self, "_pageControl");
-	[UIView animateWithDuration:FADE_DURATION animations:^{ _pageControl.alpha = 0; }];
+	[UIView animateWithDuration:FADE_DURATION animations:^{
+		for (UIView* v in _pageControl.subviews) {
+			v.alpha = 0;
+		}
+		_pageControl.alpha = 0;
+	}];
 }
 
 %new
@@ -63,5 +68,6 @@
 	for (UIView* v in self.subviews) {
 		v.alpha = 0;
 	}
+	self.alpha = 0;
 }
 %end
