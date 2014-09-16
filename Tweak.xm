@@ -46,10 +46,12 @@
 -(void)_showPageControl {
 	SBIconListPageControl* _pageControl = MSHookIvar<SBIconListPageControl*>(self, "_pageControl");
 	if (_pageControl.numberOfPages > 1 || !_pageControl.hidesForSinglePage) {
-		for (UIView* v in _pageControl.subviews) {
-			v.alpha = 1;
-		}
-		[UIView animateWithDuration:FADE_DURATION animations:^{ _pageControl.alpha = 1; }];
+		[UIView animateWithDuration:FADE_DURATION animations:^{
+			for (UIView* v in _pageControl.subviews) {
+				v.alpha = 1;
+			}
+			_pageControl.alpha = 1;
+		}];
 	}
 }
 %end
